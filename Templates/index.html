@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Women's Health</title>
+    <link rel="stylesheet" href="/static/css/index.css">
+</head>
+<body>
+    <div class="header">
+        <a href="/templates/login.html">Login</a>
+        <a href="/templates/signup.html">Sign Up</a>
+    </div>
+    <div class="container">
+        <div class="title">Input Name</div>
+        <div class="description">Input Description</div>
+
+        <div class="box">
+            <div class="button-box" onclick="location.href='/templates/symptoms.html'">Symptoms</div>
+            <div class="button-box" id="date-box" onclick="toggleDateInputs()">
+                <span id="date-box-text">Add Dates</span>
+                <div id="date-inputs" class="hidden">
+                    <label for="start-date">Start Date:</label>
+                    <input type="date" id="start-date" name="start-date">
+                    <label for="end-date">End Date:</label>
+                    <input type="date" id="end-date" name="end-date">
+                </div>
+            </div>
+            <div class="button-box">ghi</div>
+        </div>
+
+        <div class="video-container">
+            <video class="video-icon left" src="/static/videos/Dna-vmake.mp4" autoplay muted loop></video>
+            <video class="video-icon right" src="/static/videos/Healthcare-vmake.mp4" autoplay muted loop></video>
+        </div>
+        
+        <div class="footer">&copy; 2025 Women's Health Awareness</div>
+    </div>
+
+    <script src="/static/javascript/index.js"></script>
+</body>
+</html>
