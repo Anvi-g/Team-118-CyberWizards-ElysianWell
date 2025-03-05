@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stacked Cards with Popups</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0d1b2a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-around;
+                        width: 80%;
+        }
+
+        .card-stack {
+            position: relative;
+            width: 320px;
+            height: 300px;
+        }
+
+        .card {
+            position: absolute;
+            width: 100%;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease-in-out, z-index 0.3s;
+            cursor: pointer;
+        }
+
+        .card:nth-child(1) {
+            background-color: #2a9d8f;
+            color: white;
+            transform: translate(45px, -80px);
+            height: 190px;
+            z-index: 1;
+        }
+
+        .card:nth-child(2) {
+            background-color: #264653;
+            color: white;
+            transform: translate(25px, -40px);
+            height: 190px;
+            width: 100%;
+            z-index: 2;
+        }
+
+        .card:nth-child(3) {
+            background-color: #7ebdc2;
+            color: black;
+            height: 190px;
+            width: 100%;
+            z-index: 3;
+        }
+
+        .card:not(:nth-child(3)):hover {
+            transform: translate(25px, -30px);
+            z-index: 4;
+        }
+
+        .card:nth-child(3):hover {
+            transform: scale(1.1);
+        }
+
+        .badge {
+            background-color: gray;
+            color: white;
+            padding: 5px 10px;
+            font-size: 12px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+
+        h3 {
+            margin: -5px 0;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .description {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        .modal, .modal-overlay {
+            display: none;
+            position: fixed;
+        }
+
+        .modal {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 320px;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            z-index: 10;
+        }
+
+        .modal-overlay {
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card-stack">
+            <div class="card" onclick="openModal('modal1')">
+                <h3>Tracking and Self-Care</h3>
+                <p class="description">Your period cycle typically lasts around 28 days, but it can vary. Using a period tracking app or calendar can help you predict when your next period will start. Take care of yourself by getting enough rest, staying active, and managing stress. If you experience very painful cramps or irregular periods, it’s a good idea to talk to a doctor.</p>
+            </div>
+            <div class="card" onclick="openModal('modal2')">
+                <h3>Managing Your Period</h3>
+                <p class="description">There are different period products you can use, such as pads, tampons, and menstrual cups. Try different options to see what feels most comfortable. Staying hydrated, eating well, and using a heating pad can help with cramps. Keeping a small period kit in your bag with essentials like pads and wipes can make you feel more prepared.</p>
+            </div>
+            <div class="card" onclick="openModal('modal3')">
+                <span class="badge">First period</span>
+                <h3>Understanding Your First Period</h3>
+                <p class="description">Your first period, also called menarche, is a natural part of growing up. It usually happens between ages 9 and 16. You might notice changes like cramps, mood swings, and breast tenderness before it starts. It’s important to know that every body is different, and your cycle may not be regular at first.</p>
+            </div>
+        </div>
+
+        <div class="card-stack">
+            <div class="card" onclick="openModal('modal4')">
+                <h3>When to See a Doctor</h3>
+                <p class="description">While occasional irregular periods are normal, frequent unpredictability or missed periods for several months may indicate an underlying issue. If your period is accompanied by severe pain, excessive bleeding, or other unusual symptoms, it’s best to consult a doctor. Keeping track of your cycle and symptoms can provide helpful information for your doctor to determine any necessary treatment.</p>
+            </div>
+            <div class="card" onclick="openModal('modal5')">
+                <h3>Managing Irregular Periods</h3>
+                <p class="description">A healthy lifestyle can help regulate your cycle. Eating a balanced diet, staying hydrated, and getting enough rest can support hormonal balance. Reducing stress through activities like yoga or meditation may also help. If you're experiencing irregular periods due to intense workouts or extreme dieting, try to find a balance that works for your body. Birth control or other medications prescribed by a doctor can sometimes help regulate cycles if needed.</p>
+            </div>
+            <div class="card" onclick="openModal('modal6')">
+                <span class="badge">Irregular period</span>
+                <h3>Causes of Irregular Periods</h3>
+                <p class="description">Irregular periods can happen due to various factors, including stress, hormonal changes, excessive exercise, or sudden weight changes. Conditions like polycystic ovary syndrome (PCOS) or thyroid imbalances can also affect your cycle. During puberty, it's normal for periods to be irregular as your body adjusts to hormonal shifts. If your period is frequently unpredictable, it may be a sign that your body needs balance and care.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="overlay" onclick="closeModal()"></div>
+
+    <div class="modal" id="modal1">
+        <h2>Tracking and Self-Care</h2>
+        <p>Tracking your period helps you understand your cycle, predict when your next period will arrive, and notice any unusual changes. You can use a calendar or a period-tracking app to log your start and end dates, symptoms, and mood changes. Self-care during your period is important—get plenty of rest, stay hydrated, and eat nutrient-rich foods to support your body. Gentle exercise like yoga or walking can help ease cramps, while a warm bath or heating pad can provide comfort. Listen to your body, and don’t hesitate to take a break when needed. Prioritizing self-care makes your period experience more manageable.</p>
+        <button onclick="closeModal()">Close</button>
+    </div>
+
+    <div class="modal" id="modal2">
+        <h2>Managing Your Period</h2>
+        <p>Managing your period involves choosing the right products and taking care of your body. Pads, tampons, and menstrual cups are common options—try different ones to see what feels most comfortable for you. Change your pad or tampon every 4–6 hours to stay fresh and prevent infections. Staying hydrated, eating a balanced diet, and engaging in light exercise can help reduce cramps and bloating. If you experience discomfort, a heating pad or over-the-counter pain relievers can provide relief. Tracking your cycle using an app or calendar can help you prepare for your next period and understand your body’s patterns better.</p>
+        <button onclick="closeModal()">Close</button>
+    </div>
+
+    <div class="modal" id="modal3">
+        <h2>Understanding Your First Period</h2>
+        <p>Your first period, or menarche, is a sign that your body is maturing and becoming capable of reproduction. It usually happens between ages 9 and 16 and can come with symptoms like mild cramps, mood swings, and changes in discharge before it starts. The flow might be light or heavy, and the color can range from bright red to brown, which is completely normal. At first, your cycle may be irregular, meaning your period might not come at the same time every month. This is because your body is still adjusting to hormonal changes. Over time, your cycle will become more predictable.</p>
+        <button onclick="closeModal()">Close</button>
+    </div>
+
+    <div class="modal" id="modal4">
+        <h2>When to See a Doctor</h2>
+        <p>While occasional irregular periods are normal, it’s important to seek medical advice if you frequently miss periods, experience extremely heavy or painful periods, or notice other unusual symptoms like severe cramping or spotting between cycles. Keeping a record of your menstrual cycle, including the length and any symptoms, can help your doctor determine potential causes. If your irregular cycles are linked to conditions like PCOS, thyroid disorders, or other health concerns, early diagnosis and treatment can prevent complications and help restore balance to your body</p>
+        <button onclick="closeModal()">Close</button>
+    </div>
+
+    <div class="modal" id="modal5">
+        <h2>Managing Irregular Periods</h2>
+        <p>Lifestyle changes can play a significant role in regulating your period. Eating a well-balanced diet rich in vitamins and minerals, staying hydrated, and maintaining a regular sleep schedule can support hormonal health. Managing stress through activities like yoga, meditation, or light exercise can help keep your cycle on track. If irregular periods are linked to extreme exercise or restrictive dieting, adjusting your routine may bring balance. In some cases, doctors may recommend hormonal treatments, like birth control, to regulate your menstrual cycle if lifestyle adjustments don’t help.</p>
+        <button onclick="closeModal()">Close</button>
+    </div>
+
+    <div class="modal" id="modal6">
+        <h2>Causes of Irregular Periods</h2>
+        <p>Irregular periods can be caused by a variety of factors, including hormonal imbalances, stress, excessive exercise, or sudden changes in weight. Conditions like polycystic ovary syndrome (PCOS) and thyroid disorders can also disrupt the menstrual cycle. In teenagers and those entering menopause, irregular cycles are common as the body adjusts to fluctuating hormone levels. Birth control, certain medications, and underlying health issues can also affect period regularity. Understanding the root cause of your irregular cycles is essential in finding ways to manage them effectively.</p>
+        <button onclick="closeModal()">Close</button>
+    </div>
+
+    <script>
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.querySelectorAll('.modal').forEach(modal => modal.style.display = 'none');
+            document.getElementById('overlay').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

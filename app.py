@@ -7,5 +7,16 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-if __name__ == '_main_':
+@app.route('/symptoms')
+def symptoms():
+    return render_template('symptoms.html')
+
+@app.route('/content')
+def content():
+    return render_template('contentpage.html')
+
+
+    
+
+if __name__ == '__main__':
     app.run(debug=True)
