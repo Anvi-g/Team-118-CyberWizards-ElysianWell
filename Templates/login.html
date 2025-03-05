@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+
+    body {
+        background-color: #121212; /* Darker background for a cinematic feel */
+        color: #121212;
+        font-family: 'Lato', sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    #login-form-div {
+        background-color: #1c1c1c; /* Darker form background */
+        width: 350px;
+        height: fit-content;
+        margin: 100px auto;
+        border: 1px solid #333;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        text-align: center;
+    }
+
+    #login-form-div>h1 {
+        margin-bottom: 20px;
+        font-weight: 700;
+        font-size: 28px;
+        color: #FFDA63; /* TVNerd red for headings */
+    }
+
+    input {
+        width: 100%;
+        height: 40px;
+        outline: none;
+        padding: 0 10px;
+        margin: 10px 0;
+        background-color: #333;
+        border: 1px solid #555;
+        border-radius: 4px;
+        color: #FFDA63;
+        font-size: 14px;
+        transition: border-color 0.3s ease;
+    }
+
+    input:focus {
+        border-color: #FFDA63; /* TVNerd red on focus */
+    }
+
+    label {
+        font-size: 14px;
+        font-weight: 600;
+        color: #9e9e9e; /* Lighter text for labels */
+    }
+
+    form+p {
+        font-size: 14px;
+        line-height: 23px;
+        color: #9e9e9e; /* Lighter text for additional info */
+    }
+
+    form+p a {
+        text-decoration: none;
+        color: #FFDA63; /* TVNerd red for links */
+        transition: color 0.3s ease;
+    }
+
+    form+p a:hover {
+        color: #FFDA63; /* Darker red on hover */
+    }
+
+    .login-options {
+        display: flex;
+        justify-content: space-around;
+        margin: 20px 0;
+    }
+
+    .login-option {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        overflow: hidden;
+        cursor: pointer;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+        position: relative;
+    }
+
+    .login-option img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .login-option span {
+        display: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #FFDA63;
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    .login-option:hover {
+        transform: scale(1.1);
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .login-option:hover span {
+        display: block;
+    }
+
+    #create-account {
+        background-color: #FFDA63; /* TVNerd red for the button */
+        color: #121212;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        padding: 12px;
+        margin-top: 20px;
+        width: 100%;
+        font-size: 16px;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+    }
+
+    #create-account:hover {
+        background-color: #FFDA63; /* Darker red on hover */
+    }
+</style>
+
+</head>
+
+<body>
+
+    <div id="login-form-div">
+        <h1>LOGIN</h1>
+        <form method="POST">
+            <label for="user">User Name</label>
+            <input type="text" id="user" name="username" placeholder="Enter username" required />
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required />
+            <input type="submit" value="Login" />
+        </form>
+        <button id="create-account"  onclick="window.location.href='{{ url_for('signup') }}'" >Create a New Account</button>
+        <p>By logging in, you agree to Esylian Well's <a href="#">Conditions of Use</a> and <a href="#">Privacy Policy</a>.</p>
+        <p>Don't have an account? <a href="Team-118-CyberWizards-ElysianWell/Templates/signup.html">Sign up</a></p>
+    </div>
+
+</body>
+
+</html>

@@ -5,6 +5,7 @@ body {
     padding: 0;
     text-align: center;
     overflow-x: hidden;
+    
 }
 .header {
     width: 100%;
@@ -15,11 +16,12 @@ body {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 .header a {
-    margin-left: 20px;
+    /* margin-left: 20px; */
     text-decoration: none;
     color: #444;
     font-weight: bold;
     transition: color 0.3s;
+    margin-right:20px;
 }
 .header a:hover {
     color: #f08080;
@@ -33,6 +35,7 @@ body {
     align-items: center;
     text-align: center;
     animation: fadeIn 1.5s ease-in-out;
+    gap: 10px;
 }
 @keyframes fadeIn {
     from { opacity: 0; }
@@ -48,6 +51,9 @@ body {
     margin-top: 200px;
     z-index: 100; /* Increased z-index */
     position: relative; /* Ensure z-index works */
+    font-family: 'Poppins', sans-serif;
+    font-weight:700;
+    margin-top:100px;
 }
 @keyframes slideDown {
     from { transform: translateY(-50px); opacity: 0; }
@@ -92,7 +98,7 @@ body {
     box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
 }
 .footer {
-    margin-top: 400px;
+    margin-top: 170px;
     font-size: 18px;
     color: #444;
     animation: fadeIn 3s ease-in-out;
@@ -121,7 +127,7 @@ body {
     right: 0; /* Position the icon to the right */
     animation: moveRight 10s infinite;
 }
-@keyframes moveLeft {
+/* @keyframes moveLeft {
     0% { transform: translate(0, 0); }
     25% { transform: translate(-50px, 150px); }
     50% { transform: translate(-100px, 100px); }
@@ -134,7 +140,7 @@ body {
     50% { transform: translate(200px, 100px); }
     75% { transform: translate(300px, 200px); }
     100% { transform: translate(0, 0); }
-}
+} */
 
 /* Additional styles for date box */
 .hidden {
