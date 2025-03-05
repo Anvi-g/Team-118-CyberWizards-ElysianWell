@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EsylianWell - Sign Up</title>
+
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap');
+
+        body {
+            background-color: #e6c3f0;
+            color: #FFDA63;
+            font-family: 'Lato', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #navbar {
+            background-color: #1a1a1a;
+            height: 60px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(255, 218, 99, 0.1);
+        }
+
+        #navbar .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #FFDA63;
+        }
+
+        #navbar .nav-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        #navbar .nav-links div {
+            margin: 0 15px;
+        }
+
+        #navbar .nav-links a {
+            color: #FFDA63;
+            font-size: 16px;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        #navbar .nav-links a:hover {
+            background-color: #333333;
+        }
+
+        #navbar .search-bar {
+            display: flex;
+            align-items: center;
+            width: 300px;
+        }
+
+        #navbar .search-bar input {
+            width: 100%;
+            height: 30px;
+            padding: 0 10px;
+            border-radius: 20px;
+            border: none;
+            outline: none;
+            background-color: #333333;
+            color: #FFDA63;
+        }
+
+        #navbar .hamburger-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        #navbar .hamburger-menu div {
+            width: 25px;
+            height: 3px;
+            background-color: #FFDA63;
+            margin: 4px;
+            transition: 0.4s;
+        }
+
+        @media (max-width: 768px) {
+            #navbar .nav-links {
+                display: none;
+            }
+
+            #navbar .hamburger-menu {
+                display: flex;
+            }
+        }
+
+        #signup-form-div {
+            background-color: #bb95bc;  
+            width: 400px;
+             
+            height: fit-content;
+            margin: 100px auto;
+            border: 1px solid #333333;
+            padding: 30px;
+             
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(255, 218, 99, 0.2);
+            text-align: left;
+            
+            overflow-y: auto;
+            max-height: 80vh;
+        }
+
+        #signup-form-div>h1 {
+            margin-bottom: 20px;
+            font-weight: 600;
+            font-size: 28px;
+            color: #ffc8ff;
+            text-align: center;
+        }
+
+        label {
+            font-size: 16px;
+            font-weight: normal;
+            display: block;
+            margin-bottom: 5px;
+            color: #fff9fe;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 95%;
+            height: 35px;
+            outline: none;
+            padding: 8px 10px;
+            margin: 5px 0 15px 0;
+            background-color: #ddb5dd;
+            border: 1px solid #4d4d4d;
+            border-radius: 4px;
+            color: #FFDA63;
+            font-size: 14px;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="password"]:focus {
+            border-color: #FFDA63;
+        }
+
+         
+        input[type="submit"] {
+            background-color: plum;
+            color: #000000;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            padding: 12px;
+            margin-top: 15px;
+            width: 100%;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: rgb(163, 107, 163);
+        }
+
+
+        form+p {
+            font-size: 14px;
+            line-height: 23px;
+            margin-top: 20px;
+            text-align: center;
+            color: #FFDA63;
+        }
+
+        form+p a {
+            text-decoration: none;
+            color: #FFEB3B;
+        }
+
+        .signup-options {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+
+        .signup-option {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            position: relative;
+        }
+
+        .signup-option img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .signup-option span {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: plum;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .signup-option:hover {
+            transform: scale(1.1);
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .signup-option:hover span {
+            display: block;
+        }
+
+        #create-account {
+            background-color: plum;
+            color: #000000;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            padding: 12px;
+            margin-top: 15px;
+            width: 100%;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        #create-account:hover {
+            background-color: #edede4;
+        }
+
+       
+        .input-container {
+            margin-bottom: 15px;
+        }
+
+        .input-container label {
+            display: block;
+            margin-bottom: 5px;
+            color: #eeece6;
+            font-weight: bold;
+        }
+ 
+        #form-bottom-text {
+            text-align: center;
+            margin-top: 20px;
+            color: #d7d1bf;
+        }
+
+        #signup-form-div p {
+            text-align: center;
+            margin-top: 10px;
+            color: #dcdad3;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+    
+    </div>
+    <div id="signup-form-div">
+        <h1>Create Account</h1>
+        <form id="signup" method="POST">
+            <label for="user">User Name</label>
+            <input type="text" id="user" name="username" placeholder="Enter username" required />
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required />
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required />
+            <label for="confirm-password">Confirm Password</label>
+            <input type="password" id="confirm-password" placeholder="Confirm your password" required />
+            <input type="submit" value="Create your TVNerd account">
+        </form>
+
+        
+        <p id="form-bottom-text">By creating an account, you agree to the EsylianWell's <a href="#">Conditions of Use</a> and <a href="#">Privacy
+                Policy</a>.</p>
+        <p id="form-bottom-text">Already have an account? <a  href="{{ url_for('login') }}">Sign-In</a></p>
+
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.style.display = navLinks.style.display === 'none' ? 'flex' : 'none';
+        }
+    </script>
+
+</body>
+
+</html>

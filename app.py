@@ -15,6 +15,13 @@ def symptoms():
 def content():
     return render_template('contentpage.html')
 
+@app.route('/signup')
+def signup():
+    return render_template('signup.html')
+
+@app.route('/login')
+def login():
+    return render_template('login.html')
 
     
 
