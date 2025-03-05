@@ -130,6 +130,7 @@ body {
     right: 0; /* Position the icon to the right */
     animation: moveRight 10s infinite;
 }
+
 /* Additional styles for date box */
 .hidden {
     display: none;
