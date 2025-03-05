@@ -64,6 +64,8 @@ body {
     color: #222;
     max-width: 60%;
     animation: fadeIn 2s ease-in-out;
+    font-family: 'Poppins', sans-serif;
+    font-weight:400;
 }
 .box {
     display: flex;
@@ -127,21 +129,6 @@ body {
     right: 0; /* Position the icon to the right */
     animation: moveRight 10s infinite;
 }
-/* @keyframes moveLeft {
-    0% { transform: translate(0, 0); }
-    25% { transform: translate(-50px, 150px); }
-    50% { transform: translate(-100px, 100px); }
-    75% { transform: translate(-150px, 200px); }
-    100% { transform: translate(0, 0); }
-}
-@keyframes moveRight {
-    0% { transform: translate(0, 0); }
-    25% { transform: translate(100px, 150px); }
-    50% { transform: translate(200px, 100px); }
-    75% { transform: translate(300px, 200px); }
-    100% { transform: translate(0, 0); }
-} */
-
 /* Additional styles for date box */
 .hidden {
     display: none;
