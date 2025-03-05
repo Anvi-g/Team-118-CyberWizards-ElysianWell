@@ -1,60 +1,70 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // Ensure the input field exists before applying event listeners
-    const inputField = document.querySelector(".input-section input");
-    if (inputField) {
-        inputField.addEventListener("focus", function() {
-            inputField.style.borderColor = "#f08080";
-        });
-        inputField.addEventListener("blur", function() {
-            inputField.style.borderColor = "#fff";
-        });
+    // Date selection functionality
+    const dateBox = document.getElementById("date-box");
+    const dateBoxText = document.getElementById("date-box-text");
+    const dateInputs = document.getElementById("date-inputs");
+    const startDate = document.getElementById("start-date");
+    const endDate = document.getElementById("end-date");
+
+    // Function to toggle date input popup
+    function toggleDateInputs(event) {
+        event.stopPropagation(); // Prevents event from bubbling up
+        dateBox.classList.add("expanded"); // Ensure expanded mode
+        dateInputs.classList.remove("hidden"); // Show date inputs
+        dateBoxText.classList.add("hidden"); // Hide button text
+        document.body.classList.add("blur");
     }
 
-    // Ensure healthBoxes exist before applying event listeners
-    const healthBoxes = document.querySelectorAll(".health-box");
-    if (healthBoxes.length > 0) {
-        healthBoxes.forEach(box => {
-            box.addEventListener("mouseover", function() {
-                box.style.boxShadow = "5px 5px 15px rgba(0,0,0,0.3)";
-            });
-            box.addEventListener("mouseout", function() {
-                box.style.boxShadow = "2px 2px 10px rgba(0,0,0,0.2)";
-            });
-        });
+    // Function to close the date input popup
+    function closeDateInputs() {
+        dateBox.classList.remove("expanded");
+        dateInputs.classList.add("hidden");
+        dateBoxText.classList.remove("hidden");
+        document.body.classList.remove("blur");
     }
+
+    // Prevent popup from closing when clicking inside the date inputs
+    dateInputs.addEventListener("click", function(event) {
+        event.stopPropagation();
+    });
+
+    // Allow proper focus and selection for date pickers
+    startDate.addEventListener("focus", function(event) {
+        event.stopPropagation(); // Prevents event from closing popup
+    });
+
+    endDate.addEventListener("focus", function(event) {
+        event.stopPropagation();
+    });
+
+    startDate.addEventListener("click", function(event) {
+        event.stopPropagation();
+    });
+
+    endDate.addEventListener("click", function(event) {
+        event.stopPropagation();
+    });
+
+    // Automatically close popup when both dates are selected
+    function checkAndSubmitDates() {
+        if (startDate.value && endDate.value) {
+            console.log("Start Date:", startDate.value, "End Date:", endDate.value);
+            closeDateInputs(); // Close popup after both dates are selected
+        }
+    }
+
+    startDate.addEventListener("change", checkAndSubmitDates);
+    endDate.addEventListener("change", checkAndSubmitDates);
+
+    // Ensure that clicking anywhere outside the date input closes it
+    document.addEventListener("click", function() {
+        if (dateBox.classList.contains("expanded")) {
+            closeDateInputs();
+        }
+    });
+
+    // Ensure clicking the date box itself opens the popup
+    dateBox.addEventListener("click", function(event) {
+        toggleDateInputs(event);
+    });
 });
-
-// Function to toggle date input popup
-function toggleDateInputs(event) {
-    event.stopPropagation();
-    const dateBox = document.getElementById('date-box');
-    const dateBoxText = document.getElementById('date-box-text');
-    const dateInputs = document.getElementById('date-inputs');
-
-    // Toggle the expanded class for popup size increase
-    dateBox.classList.toggle('expanded');
-    dateInputs.classList.toggle('hidden');
-    dateBoxText.classList.toggle('hidden');
-
-    // Apply blur effect only to the container
-    if (dateBox.classList.contains('expanded')) {
-        document.body.classList.add('blur');
-    } else {
-        document.body.classList.remove('blur');
-    }
-}
-
-// Function to close the date input popup
-function closeDateInputs(event) {
-    event.stopPropagation();
-    const dateBox = document.getElementById('date-box');
-    const dateBoxText = document.getElementById('date-box-text');
-    const dateInputs = document.getElementById('date-inputs');
-
-    dateBox.classList.remove('expanded');
-    dateInputs.classList.add('hidden');
-    dateBoxText.classList.remove('hidden');
-
-    // Remove the blur effect when popup is closed
-    document.body.classList.remove('blur');
-}
