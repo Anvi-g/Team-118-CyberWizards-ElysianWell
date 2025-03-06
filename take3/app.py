@@ -5,21 +5,7 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 import google.generativeai as genai
 import datetime
 
-
 app = Flask(__name__)
-
-@app.route('/')
-def index():
-    return render_template('index.html')
-
-@app.route('/symptoms')
-def symptoms():
-    return render_template('symptoms.html')
-
-@app.route('/content')
-def content():
-    return render_template('contentpage.html')
-
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///chatbot.db"
 app.config["SECRET_KEY"] = "supersecretkey"
 
@@ -32,16 +18,26 @@ login_manager.login_view = "login"
 # Configure Gemini API
 genai.configure(api_key="AIzaSyC6y4wisGIhFzvoXA4OYowPsQQeRYwqKcA")
 
-models = genai.list_models()
-for model in models:
-    print(model.name)
-
 # User Model
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(100), unique=True, nullable=False)
     email = db.Column(db.String(100), unique=True, nullable=False)
     password = db.Column(db.String(200), nullable=False)
+
+# Symptom Model
+class Symptom(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50), nullable=False)
+    tip = db.Column(db.String(255), nullable=True)
+
+# UserSymptom Model
+class UserSymptom(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    symptom_id = db.Column(db.Integer, db.ForeignKey('symptom.id'), nullable=False)
+    symptom = db.relationship('Symptom', backref=db.backref('user_symptoms', lazy=True))
+    user = db.relationship('User', backref=db.backref('user_symptoms', lazy=True))
 
 # Conversation Model
 class Conversation(db.Model):
@@ -60,6 +56,11 @@ def load_user(user_id):
 def home():
     return render_template("index.html")
 
+# Content Route (Newly Added)
+@app.route("/content")
+def content():
+    return render_template("content.html")
+
 # Signup Route
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
@@ -75,26 +76,13 @@ def signup():
     return render_template("signup.html")
 
 # Login Route
-# @app.route("/login", methods=["GET", "POST"])
-# def login():
-#     if request.method == "POST":
-#         username = request.form.get("username")
-#         password = request.form["password"]
-#         user = User.query.filter_by(username=username).first()
-#         if user and bcrypt.check_password_hash(user.password, password):
-#             login_user(user)
-#             return redirect(url_for("index"))
-#         else:
-#             flash("Invalid credentials. Please try again.", "danger")
-#     return render_template("login.html")
-
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
-        email = request.form.get("email")  # Use .get() to avoid KeyError
+        email = request.form.get("email")
         password = request.form.get("password")
 
-        if not email or not password:  # Ensure values are provided
+        if not email or not password:
             flash("Email and password are required.", "danger")
             return redirect(url_for("login"))
 
@@ -102,7 +90,7 @@ def login():
 
         if user and bcrypt.check_password_hash(user.password, password):
             login_user(user)
-            return redirect(url_for("index"))
+            return redirect(url_for("home"))
         else:
             flash("Invalid credentials. Please try again.", "danger")
 
@@ -113,7 +101,7 @@ def login():
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for("index"))
+    return redirect(url_for("home"))
 
 # Chatbot Route
 @app.route("/chat", methods=["GET", "POST"])
@@ -150,8 +138,40 @@ def history():
     chats = Conversation.query.filter_by(user_id=current_user.id).all()
     return render_template("history.html", chats=chats)
 
+# Symptoms Route
+@app.route('/symptoms')
+@login_required
+def symptoms():
+    symptoms = Symptom.query.all()
+    return render_template('symptoms.html', symptoms=symptoms)
+
+# Submit Symptoms Route
+@app.route('/submit', methods=['POST'])
+@login_required
+def submit():
+    selected_symptoms = request.form.getlist('symptoms')
+    print("Selected Symptoms:", selected_symptoms)  # Debug print
+    user_symptoms = [UserSymptom(user_id=current_user.id, symptom_id=symptom_id) for symptom_id in selected_symptoms]
+    db.session.add_all(user_symptoms)
+    db.session.commit()
+    tips = get_tips(selected_symptoms)
+    print("Generated Tips:", tips)  # Debug print
+    return render_template('result.html', tips=tips)
+
+def get_tips(symptoms):
+    tips = []
+    for symptom_id in symptoms:
+        symptom = Symptom.query.get(symptom_id)
+        if symptom:
+            print(f"Symptom found: {symptom.name}, Tip: {symptom.tip}")  # Debug print
+            if symptom.tip:
+                tips.append(symptom.tip)
+        else:
+            print(f"Symptom ID {symptom_id} not found")  # Debug print
+    print("Tips in get_tips function:", tips)  # Debug print
+    return tips
+
 if __name__ == '__main__':
-    # from app import db
-    # with app.app_context():
-    #     db.create_all()  
-    app.run(debug=True)
+    with app.app_context():
+        db.create_all()
+        app.run(debug=True)
