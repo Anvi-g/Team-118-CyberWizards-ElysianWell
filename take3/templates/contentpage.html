@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stacked Cards with Popups</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #2d1b36; /* Dark plum background instead of dark blue */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 50px 0;
+        }
+
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-width: 1200px;
+            gap: 80px;
+            margin: 60px 0;
+        }
+
+        .container-row {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            gap: 120px;
+        }
+
+        .card-stack {
+            position: relative;
+            width: 280px;
+            height: 300px;
+        }
+
+        .card {
+            position: absolute;
+            width: 100%;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease-in-out, z-index 0.3s;
+            cursor: pointer;
+        }
+
+        .card:nth-child(1) {
+            background-color: #8e44ad; /* Cherry purple instead of teal */
+            color: white;
+            transform: translate(45px, -40px);
+            height: 190px;
+            z-index: 1;
+        }
+
+        .card:nth-child(2) {
+            background-color: #673ab7; /* Violet instead of dark teal */
+            color: white;
+            transform: translate(25px, -20px);
+            height: 190px;
+            width: 100%;
+            z-index: 2;
+        }
+
+        .card:nth-child(3) {
+            background-color: #b19cd9; /* Lavender instead of light teal */
+            color: black;
+            height: 190px;
+            width: 100%;
+            z-index: 3;
+        }
+
+        .card:not(:nth-child(3)):hover {
+            transform: translate(25px, -15px);
+            z-index: 4;
+        }
+
+        .card:nth-child(3):hover {
+            transform: scale(1.1);
+        }
+
+        .badge {
+            background-color: #4a235a; /* Dark plum instead of gray */
+            color: white;
+            padding: 5px 10px;
+            font-size: 12px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+
+        h3 {
+            margin: -5px 0;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .description {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        .modal, .modal-overlay {
+            display: none;
+            position: fixed;
+        }
+
+        .modal {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 320px;
+            padding: 20px;
+            background: #f3e5f5; /* Light lavender background for modals */
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            z-index: 10;
+            color: #2d1b36; /* Dark plum text for contrast */
+        }
+
+        .modal h2 {
+            color: #8e44ad; /* Cherry purple for modal headings */
+        }
+
+        .modal button {
+            background-color: #673ab7; /* Violet button */
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .modal button:hover {
+            background-color: #8e44ad; /* Cherry purple on hover */
+        }
+
+        .modal-overlay {
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(45, 27, 54, 0.7); /* Dark plum overlay with transparency */
+            z-index: 5;
+        }
+
+        @media (max-width: 1200px) {
+            .main-container {
+                padding: 20px;
+            }
+            
+            .container-row {
+                flex-direction: column;
+                align-items: center;
+                gap: 60px;
+            }
+            
+            .main-container {
+                gap: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="container-row">
+            <div class="card-stack">
+                <div class="card" onclick="openModal('modal1')">
+                    <h3>Tracking and Self-Care</h3>
+                    <p class="description">Your period cycle typically lasts around 28 days, but it can vary. Using a period tracking app or calendar can help you predict when your next period will start. Take care of yourself by getting enough rest, staying active, and managing stress. If you experience very painful cramps or irregular periods, it's a good idea to talk to a doctor.</p>
+                </div>
+                <div class="card" onclick="openModal('modal2')">
+                    <h3>Managing Your Period</h3>
+                    <p class="description">There are different period products you can use, such as pads, tampons, and menstrual cups. Try different options to see what feels most comfortable. Staying hydrated, eating well, and using a heating pad can help with cramps. Keeping a small period kit in your bag with essentials like pads and wipes can make you feel more prepared.</p>
+                </div>
+                <div class="card" onclick="openModal('modal3')">
+                    <span class="badge">First period</span>
+                    <h3>Understanding Your First Period</h3>
+                    <p class="description">Your first period, also called menarche, is a natural part of growing up. It usually happens between ages 9 and 16. You might notice changes like cramps, mood swings, and breast tenderness before it starts. It's important to know that every body is different, and your cycle may not be regular at first.</p>
+                </div>
+            </div>
+
+            <div class="card-stack">
+                <div class="card" onclick="openModal('modal4')">
+                    <h3>When to See a Doctor</h3>
+                    <p class="description">While occasional irregular periods are normal, frequent unpredictability or missed periods for several months may indicate an underlying issue. If your period is accompanied by severe pain, excessive bleeding, or other unusual symptoms, it's best to consult a doctor. Keeping track of your cycle and symptoms can provide helpful information for your doctor to determine any necessary treatment.</p>
+                </div>
+                <div class="card" onclick="openModal('modal5')">
+                    <h3>Managing Irregular Periods</h3>
+                    <p class="description">A healthy lifestyle can help regulate your cycle. Eating a balanced diet, staying hydrated, and getting enough rest can support hormonal balance. Reducing stress through activities like yoga or meditation may also help. If you're experiencing irregular periods due to intense workouts or extreme dieting, try to find a balance that works for your body. Birth control or other medications prescribed by a doctor can sometimes help regulate cycles if needed.</p>
+                </div>
+                <div class="card" onclick="openModal('modal6')">
+                    <span class="badge">Irregular period</span>
+                    <h3>Causes of Irregular Periods</h3>
+                    <p class="description">Irregular periods can happen due to various factors, including stress, hormonal changes, excessive exercise, or sudden weight changes. Conditions like polycystic ovary syndrome (PCOS) or thyroid imbalances can also affect your cycle. During puberty, it's normal for periods to be irregular as your body adjusts to hormonal shifts. If your period is frequently unpredictable, it may be a sign that your body needs balance and care.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-row">
+            <div class="card-stack">
+                <div class="card" onclick="openModal('modal7')">
+                    <h3>Period Products</h3>
+                    <p class="description">There's a wide range of period products available today, from traditional pads and tampons to newer options like menstrual cups, period underwear, and reusable cloth pads. Each has its own benefits and best uses. It may take some experimentation to find what works best for your body, lifestyle, and comfort level. Remember that what works for others might not work for you, and that's completely normal.</p>
+                </div>
+                <div class="card" onclick="openModal('modal8')">
+                    <h3>Exercise During Periods</h3>
+                    <p class="description">Light to moderate exercise during your period can actually help reduce symptoms like cramps and bloating. Activities like walking, swimming, or yoga can release endorphins that act as natural painkillers. Listen to your body and adjust intensity as needed. If you're feeling particularly tired or uncomfortable, it's perfectly fine to take a rest day or opt for gentle stretching instead.</p>
+                </div>
+                <div class="card" onclick="openModal('modal9')">
+                    <span class="badge">Physical activity</span>
+                    <h3>Benefits of Movement</h3>
+                    <p class="description">Staying active during your period can have numerous benefits. Regular movement helps improve circulation, which can reduce bloating and cramps. Exercise also releases endorphins that can boost your mood and reduce period-related fatigue. Finding activities that feel good for your body during this time can help maintain a positive relationship with both exercise and your monthly cycle.</p>
+                </div>
+            </div>
+
+            <div class="card-stack">
+                <div class="card" onclick="openModal('modal10')">
+                    <h3>Nutrition for Period Health</h3>
+                    <p class="description">What you eat can significantly impact how you feel during your period. Foods rich in iron, like leafy greens and lean meats, can help replenish what's lost during menstruation. Calcium-rich foods may help reduce cramping, while complex carbohydrates provide steady energy. Staying hydrated is also crucial, as water helps reduce bloating and supports overall well-being during your cycle.</p>
+                </div>
+                <div class="card" onclick="openModal('modal11')">
+                    <h3>Foods to Include</h3>
+                    <p class="description">Some foods can be particularly helpful during your period. Dark chocolate contains magnesium, which may reduce cramping. Bananas offer potassium that can ease bloating. Ginger and turmeric have anti-inflammatory properties that may reduce pain. Including these foods in your diet around your period might help manage symptoms naturally and support your body through its monthly changes.</p>
+                </div>
+                <div class="card" onclick="openModal('modal12')">
+                    <span class="badge">Nutrition</span>
+                    <h3>Foods for Period Comfort</h3>
+                    <p class="description">A balanced diet can help manage period symptoms naturally. Iron-rich foods like spinach and lentils help replace iron lost during menstruation. Omega-3 fatty acids found in fish and flaxseeds can reduce inflammation and pain. Avoiding excess salt, caffeine, and alcohol may help minimize bloating and mood swings. Small, frequent meals can help maintain energy levels throughout the day.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="overlay" onclick="closeModal()"></div>
+
+    <!-- Original Modals 1-6 -->
+    <div class="modal" id="modal1">
+        <h2>Tracking and Self-Care</h2>
+        <p>Tracking your period helps you understand your cycle, predict when your next period will arrive, and notice any unusual changes. You can use a calendar or a period-tracking app to log your start and end dates, symptoms, and mood changes. Self-care during your period is important—get plenty of rest, stay hydrated, and eat nutrient-rich foods to support your body. Gentle exercise like yoga or walking can help ease cramps, while a warm bath or heating pad can provide comfort. Listen to your body, and don't hesitate to take a break when needed. Prioritizing self-care makes your period experience more manageable.</p>
+        <button onclick="closeModal()">Close</button>
+    </div>
+
+    <div class="modal" id="modal2">
+        <h2>Managing Your Period</h2>
+        <p>Managing your period involves choosing the right products and taking care of your body. Pads, tampons, and menstrual cups are common options—try different ones to see what feels most comfortable for you. Change your pad or tampon every 4–6 hours to stay fresh and prevent infections. Staying hydrated, eating a balanced diet, and engaging in light exercise can help reduce cramps and bloating. If you experience discomfort, a heating pad or over-the-counter pain relievers can provide relief. Tracking your cycle using an app or calendar can help you prepare for your next period and understand your body's patterns better.</p>
+        <button onclick="closeModal()">Close</button>
+    </div>
+
+    <div class="modal" id="modal3">
+        <h2>Understanding Your First Period</h2>
+        <p>Your first period, or menarche, is a sign that your body is maturing and becoming capable of reproduction. It usually happens between ages 9 and 16 and can come with symptoms like mild cramps, mood swings, and changes in discharge before it starts. The flow might be light or heavy, and the color can range from bright red to brown, which is completely normal. At first, your cycle may be irregular, meaning your period might not come at the same time every month. This is because your body is still adjusting to hormonal changes. Over time, your cycle will become more predictable.</p>
+        <button onclick="closeModal()">Close</button>
+    </div>
+
+    <div class="modal" id="modal4">
+        <h2>When to See a Doctor</h2>
+        <p>While occasional irregular periods are normal, it's important to seek medical advice if you frequently miss periods, experience extremely heavy or painful periods, or notice other unusual symptoms like severe cramping or spotting between cycles. Keeping a record of your menstrual cycle, including the length and any symptoms, can help your doctor determine potential causes. If your irregular cycles are linked to conditions like PCOS, thyroid disorders, or other health concerns, early diagnosis and treatment can prevent complications and help restore balance to your body</p>
+        <button onclick="closeModal()">Close</button>
+    </div>
+
+    <div class="modal" id="modal5">
+        <h2>Managing Irregular Periods</h2>
+        <p>Lifestyle changes can play a significant role in regulating your period. Eating a well-balanced diet rich in vitamins and minerals, staying hydrated, and maintaining a regular sleep schedule can support hormonal health. Managing stress through activities like yoga, meditation, or light exercise can help keep your cycle on track. If irregular periods are linked to extreme exercise or restrictive dieting, adjusting your routine may bring balance. In some cases, doctors may recommend hormonal treatments, like birth control, to regulate your menstrual cycle if lifestyle adjustments don't help.</p>
+        <button onclick="closeModal()">Close</button>
+    </div>
+
+    <div class="modal" id="modal6">
+        <h2>Causes of Irregular Periods</h2>
+        <p>Irregular periods can be caused by a variety of factors, including hormonal imbalances, stress, excessive exercise, or sudden changes in weight. Conditions like polycystic ovary syndrome (PCOS) and thyroid disorders can also disrupt the menstrual cycle. In teenagers and those entering menopause, irregular cycles are common as the body adjusts to fluctuating hormone levels. Birth control, certain medications, and underlying health issues can also affect period regularity. Understanding the root cause of your irregular cycles is essential in finding ways to manage them effectively.</p>
+        <button onclick="closeModal()">Close</button>
+    </div>
+
+    <!-- New Modals 7-12 -->
+    <div class="modal" id="modal7">
+        <h2>Period Products</h2>
+        <p>The world of period products has expanded significantly in recent years, offering options to suit various needs and preferences. Traditional disposable pads and tampons remain popular for their convenience, while menstrual cups offer an eco-friendly alternative that can be worn for up to 12 hours. Period underwear provides leak-proof protection without the need for additional products, and reusable cloth pads combine sustainability with comfort. Each product has its learning curve and benefits—pads are easy to use but may feel bulky, tampons offer freedom of movement but require more frequent changing, cups have a steeper learning curve but offer long-lasting protection. Exploring different options can help you find what works best for your body, lifestyle, and comfort level.</p>
+        <button onclick="closeModal()">Close</button>
+    </div>
+
+    <div class="modal" id="modal8">
+        <h2>Exercise During Periods</h2>
+        <p>Engaging in physical activity during your period can seem challenging, but it often provides significant benefits. Light to moderate exercise stimulates blood flow, which can alleviate cramps and reduce bloating. Activities like walking, swimming, or cycling are particularly effective for boosting endorphins—natural mood enhancers and pain relievers. Yoga poses such as child's pose, cat-cow stretches, and gentle twists can provide relief from lower back pain and abdominal discomfort. It's normal to experience changes in energy levels throughout your cycle, so listen to your body and adjust your workout intensity accordingly. Some days might call for more vigorous activity, while others might be better suited for gentle stretching or rest. Remember that maintaining consistency with movement, even if modified, can help regulate your cycle and reduce the severity of period symptoms over time.</p>
+        <button onclick="closeModal()">Close</button>
+    </div>
+
+    <div class="modal" id="modal9">
+        <h2>Benefits of Movement</h2>
+        <p>Regular physical activity during your period offers numerous benefits beyond just physical fitness. Exercise stimulates the release of endorphins, which act as natural painkillers and mood elevators, helping counteract period-related discomfort and emotional fluctuations. Improved blood circulation from movement can reduce bloating and swelling by helping your body flush excess fluids. Gentle core exercises and stretches can alleviate back pain and cramps by relaxing tense muscles around the pelvis and lower back. Activities like yoga and pilates can be particularly beneficial, as they combine strength, flexibility, and relaxation techniques. Even a short daily walk can make a noticeable difference in how you feel. By maintaining some level of activity during your period, you're not only addressing immediate symptoms but also potentially reducing the severity of future period discomfort through consistent hormonal regulation.</p>
+        <button onclick="closeModal()">Close</button>
+    </div>
+
+    <div class="modal" id="modal10">
+        <h2>Nutrition for Period Health</h2>
+        <p>What you eat before and during your period can significantly impact your comfort and well-being. Iron-rich foods like leafy greens, beans, and lean meats help replenish iron stores that may be depleted during menstruation, preventing fatigue and weakness. Magnesium-rich foods such as dark chocolate, nuts, and seeds can help reduce muscle tension and cramping. Complex carbohydrates provide sustained energy and help stabilize mood swings by regulating blood sugar levels. Omega-3 fatty acids found in fish, flaxseeds, and walnuts have anti-inflammatory properties that may decrease period pain. Staying well-hydrated is equally important—drinking plenty of water helps reduce bloating and supports overall bodily functions. By focusing on nutrient-dense whole foods and limiting processed foods, salt, alcohol, and caffeine around your period, you can create a foundation for better hormonal balance and reduced symptoms month after month.</p>
+        <button onclick="closeModal()">Close</button>
+    </div>
+
+    <div class="modal" id="modal11">
+        <h2>Foods to Include</h2>
+        <p>Certain foods can be particularly beneficial during your menstrual cycle. Dark chocolate (70% cocoa or higher) contains magnesium that helps relax muscles and reduce cramping, while also providing a mood boost. Bananas are rich in potassium and vitamin B6, which can ease bloating and fatigue. Ginger has powerful anti-inflammatory properties that may reduce period pain when consumed as tea or added to meals. Turmeric contains curcumin, which has been shown to help alleviate menstrual cramps. Salmon and other fatty fish provide omega-3 fatty acids that combat inflammation and hormone-related pain. Leafy greens like spinach and kale offer iron, calcium, and magnesium—all essential nutrients during menstruation. Yogurt with live cultures supports gut health, which is often disrupted during your period. Cinnamon has been shown to reduce heavy bleeding and provide pain relief when consumed regularly. Including these foods in your diet in the days leading up to and during your period can help manage symptoms naturally.</p>
+        <button onclick="closeModal()">Close</button>
+    </div>
+
+    <div class="modal" id="modal12">
+        <h2>Foods for Period Comfort</h2>
+        <p>Making thoughtful food choices during your period can significantly improve your comfort and energy levels. Iron-rich foods like spinach, lentils, and lean red meat help combat the fatigue that can come with blood loss. Foods high in omega-3 fatty acids, such as salmon, walnuts, and chia seeds, have anti-inflammatory properties that may reduce cramping and pain. Complex carbohydrates from whole grains provide sustained energy and help stabilize mood swings by maintaining steady blood sugar levels. Calcium-rich foods like yogurt and kale can ease muscle tension and potentially reduce PMS symptoms. Staying well-hydrated with water and herbal teas helps reduce bloating and supports overall well-being. It's equally important to know what foods might worsen symptoms—excess salt can increase water retention and bloating, while caffeine and alcohol may increase irritability, anxiety, and dehydration. Maintaining a consistent eating schedule with smaller, more frequent meals can help keep energy levels stable throughout the day.</p>
+        <button onclick="closeModal()">Close</button>
+    </div>
+
+    <script>
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.querySelectorAll('.modal').forEach(modal => modal.style.display = 'none');
+            document.getElementById('overlay').style.display = 'none';
+        }
+    </script>
+    {% include 'chat.html' %}
+</body>
+</html>

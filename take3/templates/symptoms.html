@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Symptoms</title>
+    <style>
+          body {
+            font-family: Arial, sans-serif;
+            background-color: #ffccff;
+            margin: 0;
+            padding: 0;
+            color: black;
+        }
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: #E6CCE6;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            color: black;
+        }
+        .header {
+            background-color: #D9B3D9;
+            padding: 10px;
+            text-align: center;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            color: black;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .section h2 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        .items {
+            display: flex;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+        .items::-webkit-scrollbar {
+            display: none;
+        }
+        .items {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .item {
+            flex: 0 0 auto;
+            background-color: #D9B3D9;
+            padding: 10px;
+            margin: 5px;
+            text-align: center;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: normal;
+            word-wrap: break-word;
+            color: black;
+        }
+        .item:hover {
+            background-color: #E6CCE6;
+        }
+        .item.clicked {
+            background-color: #F0E0F0;
+        }
+        .submit-btn {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            padding: 12px;
+            font-size: 18px;
+            font-weight: bold;
+            color: black;
+            background: linear-gradient(45deg, #D9B3D9, #E6CCE6);
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0px 4px 10px rgba(217, 179, 217, 0.4);
+            text-transform: uppercase;
+            position: fixed;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 20px;
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(45deg, #E6CCE6, #D9B3D9);
+            transform: translateX(-50%) scale(1.05);
+            box-shadow: 0px 6px 15px rgba(217, 179, 217, 0.6);
+        }
+
+        .submit-btn:active {
+            transform: translateX(-50%) scale(0.95);
+        }
+        
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>Symptoms</h1>
+    </div>
+
+    <div class="section">
+        <h2>Feelings</h2>
+        <div class="items">
+            <div class="item">energized</div>
+            <div class="item">exhausted</div>
+            <div class="item">anxiety</div>
+            <div class="item">calm</div>
+            <div class="item">happy</div>
+            <div class="item">irritable</div>
+            <div class="item">mood swings</div>
+            <div class="item">sad</div>
+            <div class="item">creative</div>
+            <div class="item">unmotivated</div>
+            <div class="item">overly self-critical</div>
+            <div class="item">unfocused</div>
+            <div class="item">brain fog</div>
+            <div class="item">depressed</div>
+            <div class="item">panic</div>
+            <div class="item">rage</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Cravings</h2>
+        <div class="items">
+            <div class="item">salty</div>
+            <div class="item">sweet</div>
+            <div class="item">carbs</div>
+            <div class="item">fried things</div>
+            <div class="item">fountain soda</div>
+            <div class="item">extra sauce</div>
+            <div class="item">greens</div>
+            <div class="item">meat</div>
+            <div class="item">fruit</div>
+            <div class="item">alone time</div>
+            <div class="item">deep talk</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Symptoms</h2>
+        <div class="items">
+            <div class="item">headache</div>
+            <div class="item">cramps</div>
+            <div class="item">low appetite</div>
+            <div class="item">increased appetite</div>
+            <div class="item">acne</div>
+            <div class="item">migraine</div>
+            <div class="item">ovulation pain</div>
+            <div class="item">back pain</div>
+            <div class="item">nausea</div>
+            <div class="item">insomnia</div>
+            <div class="item">yeast infection</div>
+            <div class="item">confirmed UTI</div>
+            <div class="item">joint pain</div>
+            <div class="item">night sweats</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Flow</h2>
+        <div class="items">
+            <div class="item">light</div>
+            <div class="item">medium</div>
+            <div class="item">heavy</div>
+            <div class="item">crime scene</div>
+            <div class="item">dark purple with clots</div>
+            <div class="item">pale pink and watery</div>
+            <div class="item">brownish</div>
+            <div class="item">spotting</div>
+            <div class="item">nothing</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Cervical Mucus</h2>
+        <div class="items">
+            <div class="item">watery</div>
+            <div class="item">egg white (ovulating)</div>
+            <div class="item">creamy</div>
+            <div class="item">sticky</div>
+            <div class="item">none (dry)</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Activities</h2>
+        <div class="items">
+            <div class="item">meditation</div>
+            <div class="item">cardio</div>
+            <div class="item">weight training</div>
+            <div class="item">dance party</div>
+            <div class="item">massage</div>
+            <div class="item">netflix</div>
+            <div class="item">shopping</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Altered States</h2>
+        <div class="items">
+            <div class="item">caffeine</div>
+            <div class="item">alcohol</div>
+            <div class="item">nicotine</div>
+            <div class="item">adderall[ADHD]</div>
+            <div class="item">benzos[Anxiety]</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Cycle Disruptions</h2>
+        <div class="items">
+            <div class="item">travel</div>
+            <div class="item">sickness</div>
+            <div class="item">stress</div>
+            <div class="item">injury</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Tests</h2>
+        <div class="items">
+            <div class="item">+ ovulation test</div>
+            <div class="item">- ovulation test</div>
+        </div>
+    </div>
+    <button class="submit-btn">Submit</button>
+</div>
+{% include 'partials/chat.html' %}
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const sections = document.querySelectorAll('.section');
+
+    sections.forEach(section => {
+        const items = section.querySelectorAll('.item');
+
+        items.forEach(item => {
+            item.addEventListener('click', function() {
+                // Unselect all buttons in the same section
+                items.forEach(otherItem => {
+                    otherItem.classList.remove('clicked');
+                    otherItem.disabled = false; // Re-enable any previously selected button
+                });
+
+                // Select the clicked button
+                this.classList.add('clicked');
+                this.disabled = true; // Disable the clicked button to visually indicate it's selected
+
+                const category = section.querySelector('h2').innerText;
+                const value = this.innerText;
+
+                const clickData = {
+                    category: category,
+                    value: value
+                };
+
+                sendData(clickData);
+            });
+        });
+    });
+});
+
+function sendData(data) {
+    fetch('/record_click', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+}
+
+</script>
+
+</body>
+</html>

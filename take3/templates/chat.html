@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <link rel="stylesheet" href="/static/css/chat.css">
+    <script>
+        function toggleChat() {
+            document.getElementById("chat-container").classList.toggle("open");
+        }
+        
+        async function sendMessage() {
+            const userMessage = document.getElementById("user-input").value;
+            if (!userMessage.trim()) return;
+            
+            const chatBox = document.getElementById("chat-box");
+            chatBox.innerHTML += `<div class='user-message'><strong>You:</strong> ${userMessage}</div>`;
+            document.getElementById("user-input").value = "";
+            
+            const response = await fetch("/chatbot", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ message: userMessage })
+            });
+            
+            const data = await response.json();
+            chatBox.innerHTML += `<div class='bot-message'><strong>Bot:</strong> ${data.response}</div>`;
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+    </script>
+</head>
+<body>
+    <button id="chat-button" onclick="toggleChat()">💬</button>
+    <div id="chat-container">
+        <div id="chat-header">
+            <span>Chatbot</span>
+            <button onclick="toggleChat()">✖</button>
+        </div>
+        <div id="chat-box"></div>
+        <div id="chat-input">
+            <input type="text" id="user-input" placeholder="Type a message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+</body>
+</html>
