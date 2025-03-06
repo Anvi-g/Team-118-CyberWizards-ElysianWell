@@ -1,0 +1,335 @@
+[
+    {
+        "label": "Flask",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "jsonify",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "Flask",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "redirect",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "url_for",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "flash",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "sqlite3",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sqlite3",
+        "description": "sqlite3",
+        "detail": "sqlite3",
+        "documentation": {}
+    },
+    {
+        "label": "SQLAlchemy",
+        "importPath": "flask_sqlalchemy",
+        "description": "flask_sqlalchemy",
+        "isExtraImport": true,
+        "detail": "flask_sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "LoginManager",
+        "importPath": "flask_login",
+        "description": "flask_login",
+        "isExtraImport": true,
+        "detail": "flask_login",
+        "documentation": {}
+    },
+    {
+        "label": "UserMixin",
+        "importPath": "flask_login",
+        "description": "flask_login",
+        "isExtraImport": true,
+        "detail": "flask_login",
+        "documentation": {}
+    },
+    {
+        "label": "login_user",
+        "importPath": "flask_login",
+        "description": "flask_login",
+        "isExtraImport": true,
+        "detail": "flask_login",
+        "documentation": {}
+    },
+    {
+        "label": "login_required",
+        "importPath": "flask_login",
+        "description": "flask_login",
+        "isExtraImport": true,
+        "detail": "flask_login",
+        "documentation": {}
+    },
+    {
+        "label": "logout_user",
+        "importPath": "flask_login",
+        "description": "flask_login",
+        "isExtraImport": true,
+        "detail": "flask_login",
+        "documentation": {}
+    },
+    {
+        "label": "current_user",
+        "importPath": "flask_login",
+        "description": "flask_login",
+        "isExtraImport": true,
+        "detail": "flask_login",
+        "documentation": {}
+    },
+    {
+        "label": "Bcrypt",
+        "importPath": "flask_bcrypt",
+        "description": "flask_bcrypt",
+        "isExtraImport": true,
+        "detail": "flask_bcrypt",
+        "documentation": {}
+    },
+    {
+        "label": "index",
+        "kind": 2,
+        "importPath": "Team-118-CyberWizards-ElysianWell.app",
+        "description": "Team-118-CyberWizards-ElysianWell.app",
+        "peekOfCode": "def index():\n    return render_template('index.html')\nif __name__ == '_main_':\n    app.run(debug=True)",
+        "detail": "Team-118-CyberWizards-ElysianWell.app",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "Team-118-CyberWizards-ElysianWell.app",
+        "description": "Team-118-CyberWizards-ElysianWell.app",
+        "peekOfCode": "app = Flask(__name__)\n@app.route('/')\ndef index():\n    return render_template('index.html')\nif __name__ == '_main_':\n    app.run(debug=True)",
+        "detail": "Team-118-CyberWizards-ElysianWell.app",
+        "documentation": {}
+    },
+    {
+        "label": "User",
+        "kind": 6,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "class User(UserMixin, db.Model):\n    id = db.Column(db.Integer, primary_key=True)\n    username = db.Column(db.String(50), nullable=False, unique=True)\n    password = db.Column(db.String(60), nullable=False)\nclass Symptom(db.Model):\n    id = db.Column(db.Integer, primary_key=True)\n    name = db.Column(db.String(50), nullable=False)\nclass UserSymptom(db.Model):\n    id = db.Column(db.Integer, primary_key=True)\n    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "Symptom",
+        "kind": 6,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "class Symptom(db.Model):\n    id = db.Column(db.Integer, primary_key=True)\n    name = db.Column(db.String(50), nullable=False)\nclass UserSymptom(db.Model):\n    id = db.Column(db.Integer, primary_key=True)\n    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)\n    symptom_id = db.Column(db.Integer, db.ForeignKey('symptom.id'), nullable=False)\n    symptom = db.relationship('Symptom', backref=db.backref('user_symptoms', lazy=True))\n    user = db.relationship('User', backref=db.backref('user_symptoms', lazy=True))\n@login_manager.user_loader",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "UserSymptom",
+        "kind": 6,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "class UserSymptom(db.Model):\n    id = db.Column(db.Integer, primary_key=True)\n    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)\n    symptom_id = db.Column(db.Integer, db.ForeignKey('symptom.id'), nullable=False)\n    symptom = db.relationship('Symptom', backref=db.backref('user_symptoms', lazy=True))\n    user = db.relationship('User', backref=db.backref('user_symptoms', lazy=True))\n@login_manager.user_loader\ndef load_user(user_id):\n    return User.query.get(int(user_id))\n@app.route('/')",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "load_user",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def load_user(user_id):\n    return User.query.get(int(user_id))\n@app.route('/')\n@login_required\ndef index():\n    symptoms = Symptom.query.all()\n    return render_template('index.html', symptoms=symptoms)\n@app.route('/login', methods=['GET', 'POST'])\ndef login():\n    if request.method == 'POST':",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "index",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def index():\n    symptoms = Symptom.query.all()\n    return render_template('index.html', symptoms=symptoms)\n@app.route('/login', methods=['GET', 'POST'])\ndef login():\n    if request.method == 'POST':\n        username = request.form['username']\n        password = request.form['password']\n        user = User.query.filter_by(username=username).first()\n        if user and bcrypt.check_password_hash(user.password, password):",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "login",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def login():\n    if request.method == 'POST':\n        username = request.form['username']\n        password = request.form['password']\n        user = User.query.filter_by(username=username).first()\n        if user and bcrypt.check_password_hash(user.password, password):\n            login_user(user)\n            return redirect(url_for('index'))\n        else:\n            flash('Login Unsuccessful. Please check username and password', 'danger')",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "register",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def register():\n    if request.method == 'POST':\n        username = request.form['username']\n        password = request.form['password']\n        hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')\n        user = User(username=username, password=hashed_password)\n        try:\n            db.session.add(user)\n            db.session.commit()\n            flash('Your account has been created!', 'success')",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "logout",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def logout():\n    logout_user()\n    return redirect(url_for('login'))\n@app.route('/submit', methods=['POST'])\n@login_required\ndef submit():\n    selected_symptoms = request.form.getlist('symptoms')\n    print(\"Selected Symptoms:\", selected_symptoms)  # Debug print\n    user_symptoms = [UserSymptom(user_id=current_user.id, symptom_id=symptom_id) for symptom_id in selected_symptoms]\n    db.session.add_all(user_symptoms)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "submit",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def submit():\n    selected_symptoms = request.form.getlist('symptoms')\n    print(\"Selected Symptoms:\", selected_symptoms)  # Debug print\n    user_symptoms = [UserSymptom(user_id=current_user.id, symptom_id=symptom_id) for symptom_id in selected_symptoms]\n    db.session.add_all(user_symptoms)\n    db.session.commit()\n    tips = get_tips(selected_symptoms)\n    print(\"Generated Tips:\", tips)  # Debug print\n    return render_template('result.html', tips=tips)\n@app.route('/symptoms', methods=['GET', 'POST'])",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "symptoms",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def symptoms():\n    if request.method == 'POST':\n        selected_symptoms = request.form.getlist('symptoms')\n        print(\"Selected Symptoms:\", selected_symptoms)  # Debug print\n        user_symptoms = [UserSymptom(user_id=current_user.id, symptom_id=symptom_id) for symptom_id in selected_symptoms]\n        db.session.add_all(user_symptoms)\n        db.session.commit()\n        tips = get_tips(selected_symptoms)\n        print(\"Generated Tips:\", tips)  # Debug print\n        return render_template('result.html', tips=tips)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "get_tips",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def get_tips(symptoms):\n    tips = []\n    if '1' in symptoms:\n        tips.append('Practice mindfulness and meditation to manage stress.')\n    if '2' in symptoms:\n        tips.append('Maintain a balanced diet and stay hydrated.')\n    if '3' in symptoms or '4' in symptoms:\n        tips.append('Maintain a balanced diet with regular meals.')\n    if '5' in symptoms:\n        tips.append('Practice good sleep hygiene to improve sleep quality.')",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app = Flask(__name__)\napp.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///symptoms.db'\napp.config['SECRET_KEY'] = 'your_secret_key'\ndb = SQLAlchemy(app)\nlogin_manager = LoginManager(app)\nlogin_manager.login_view = 'login'\nbcrypt = Bcrypt(app)\nclass User(UserMixin, db.Model):\n    id = db.Column(db.Integer, primary_key=True)\n    username = db.Column(db.String(50), nullable=False, unique=True)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app.config['SQLALCHEMY_DATABASE_URI']",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///symptoms.db'\napp.config['SECRET_KEY'] = 'your_secret_key'\ndb = SQLAlchemy(app)\nlogin_manager = LoginManager(app)\nlogin_manager.login_view = 'login'\nbcrypt = Bcrypt(app)\nclass User(UserMixin, db.Model):\n    id = db.Column(db.Integer, primary_key=True)\n    username = db.Column(db.String(50), nullable=False, unique=True)\n    password = db.Column(db.String(60), nullable=False)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app.config['SECRET_KEY']",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app.config['SECRET_KEY'] = 'your_secret_key'\ndb = SQLAlchemy(app)\nlogin_manager = LoginManager(app)\nlogin_manager.login_view = 'login'\nbcrypt = Bcrypt(app)\nclass User(UserMixin, db.Model):\n    id = db.Column(db.Integer, primary_key=True)\n    username = db.Column(db.String(50), nullable=False, unique=True)\n    password = db.Column(db.String(60), nullable=False)\nclass Symptom(db.Model):",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "db",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "db = SQLAlchemy(app)\nlogin_manager = LoginManager(app)\nlogin_manager.login_view = 'login'\nbcrypt = Bcrypt(app)\nclass User(UserMixin, db.Model):\n    id = db.Column(db.Integer, primary_key=True)\n    username = db.Column(db.String(50), nullable=False, unique=True)\n    password = db.Column(db.String(60), nullable=False)\nclass Symptom(db.Model):\n    id = db.Column(db.Integer, primary_key=True)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "login_manager",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "login_manager = LoginManager(app)\nlogin_manager.login_view = 'login'\nbcrypt = Bcrypt(app)\nclass User(UserMixin, db.Model):\n    id = db.Column(db.Integer, primary_key=True)\n    username = db.Column(db.String(50), nullable=False, unique=True)\n    password = db.Column(db.String(60), nullable=False)\nclass Symptom(db.Model):\n    id = db.Column(db.Integer, primary_key=True)\n    name = db.Column(db.String(50), nullable=False)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "login_manager.login_view",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "login_manager.login_view = 'login'\nbcrypt = Bcrypt(app)\nclass User(UserMixin, db.Model):\n    id = db.Column(db.Integer, primary_key=True)\n    username = db.Column(db.String(50), nullable=False, unique=True)\n    password = db.Column(db.String(60), nullable=False)\nclass Symptom(db.Model):\n    id = db.Column(db.Integer, primary_key=True)\n    name = db.Column(db.String(50), nullable=False)\nclass UserSymptom(db.Model):",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "bcrypt",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "bcrypt = Bcrypt(app)\nclass User(UserMixin, db.Model):\n    id = db.Column(db.Integer, primary_key=True)\n    username = db.Column(db.String(50), nullable=False, unique=True)\n    password = db.Column(db.String(60), nullable=False)\nclass Symptom(db.Model):\n    id = db.Column(db.Integer, primary_key=True)\n    name = db.Column(db.String(50), nullable=False)\nclass UserSymptom(db.Model):\n    id = db.Column(db.Integer, primary_key=True)",
+        "detail": "app",
+        "documentation": {}
+    }
+]
