@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results</title>
+    <style>
+        body {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    background: linear-gradient(135deg, #E6E6FA, #D8BFD8, #9370DB);
+    color: #4B0082;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    animation: backgroundMove 10s infinite alternate;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+@keyframes backgroundMove {
+    0% { background-position: left; }
+    100% { background-position: right; }
+}
+
+h1 {
+    color: #800080;
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+    font-size: 2.5rem;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    width: 70%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+li {
+    background: radial-gradient(circle, #D8BFD8, #E6E6FA);
+    color: #4B0082;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+    transition: transform 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+}
+
+li:hover {
+    transform: scale(1.05);
+}
+
+a {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    color: white;
+    background: linear-gradient(45deg, #9370DB, #8A2BE2);
+    padding: 15px 25px;
+    border-radius: 25px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+a:hover {
+    transform: scale(1.1) rotate(3deg);
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+    </style>
+</head>
+<body>
+    <h1>Tips</h1>
+    <ul>
+        {% for tip in tips %}
+            <li>{{ tip }}</li>
+        {% endfor %}
+    </ul>
+    <a href="/">Go Back</a>
+</body>
+</html>
