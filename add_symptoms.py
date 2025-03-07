@@ -1,4 +1,4 @@
-from test import db, Symptom, app
+from app import db, Symptom, app
 
 symptoms_data = [
     {'name': 'energized', 'tip': 'Engage in physical activities to utilize your energy.'},
@@ -75,6 +75,8 @@ symptoms_data = [
     {'name': '+ ovulation test', 'tip': 'Monitor your cycle and plan accordingly.'},
     {'name': '- ovulation test', 'tip': 'Monitor your cycle and consult a healthcare provider if needed.'},
 ]
+
+
 
 with app.app_context():
     db.create_all()  # Ensure the database tables are created
