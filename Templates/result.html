@@ -90,12 +90,17 @@ a:hover {
     </style>
 </head>
 <body>
-    <h1>Tips</h1>
-    <ul>
-        {% for tip in tips %}
-            <li>{{ tip }}</li>
-        {% endfor %}
-    </ul>
+    <h1>Tips for Managing PCOS/PCOD Symptoms</h1>
+    
+    {% if tips %}
+        <ul>
+            {% for tip in tips %}
+                <li>{{ tip }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No tips available. Please try selecting different symptoms.</p>
+    {% endif %}
+
     <a href="/">Go Back</a>
-</body>
 </html>

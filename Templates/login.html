@@ -13,7 +13,7 @@
 
 body {
     background-color: #e6c3f0; /* Updated background */
-    color: #FFDA63;
+    color: #11100e;
     font-family: 'Lato', sans-serif;
     margin: 0;
     padding: 0;
@@ -108,15 +108,24 @@ form+p a:hover {
     <div id="login-form-div">
         <h1>Login</h1>
         <form method="POST">
-            <label for="user">User Name</label>
-            <input type="text" id="user" name="username" placeholder="Enter username" required />
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required />
+            <!-- <label for="user">User Name</label>
+            <input type="text" id="user" name="username" placeholder="Enter username" required /> -->
             <label for="password">Password</label>
             <input type="password" id="password" name="password" placeholder="Enter your password" required />
             <input type="submit" value="Login" />
         </form>
-        <button id="create-account"  onclick="window.location.href='{{ url_for('signup') }}'" >Create a New Account</button>
+        <!-- <button id="create-account"  onclick="window.location.href='{{ url_for('signup') }}'" >Create a New Account</button>
+        <p>By logging in, you agree to Esylian Well's <a href="#">Conditions of Use</a> and <a href="#">Privacy Policy</a>.</p> -->
+        
+        <a href="{{ url_for('signup') }}">
+            <button id="create-account">Create a New Account</button>
+        </a>
+
         <p>By logging in, you agree to Esylian Well's <a href="#">Conditions of Use</a> and <a href="#">Privacy Policy</a>.</p>
-        <p>Don't have an account? <a href="Team-118-CyberWizards-ElysianWell/Templates/signup.html">Sign up</a></p>
+        
+        <p>Don't have an account? <a href="{{url_for('signup')}}">Sign up</a></p>
     </div>
 
 </body>

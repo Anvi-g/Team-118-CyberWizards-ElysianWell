@@ -1,12 +1,4 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const inputField = document.querySelector(".input-section input");
-    inputField.addEventListener("focus", function() {
-        inputField.style.borderColor = "#f08080";
-    });
-    inputField.addEventListener("blur", function() {
-        inputField.style.borderColor = "#fff";
-    });
-    
     const healthBoxes = document.querySelectorAll(".health-box");
     healthBoxes.forEach(box => {
         box.addEventListener("mouseover", function() {
@@ -16,13 +8,49 @@ document.addEventListener("DOMContentLoaded", function() {
             box.style.boxShadow = "2px 2px 10px rgba(0,0,0,0.2)";
         });
     });
+
+    document.getElementById("end-date").addEventListener("change", calculateCycle);
 });
 
-function toggleDateInputs() {
-    const dateBox = document.getElementById('date-box');
-    const dateBoxText = document.getElementById('date-box-text');
-    const dateInputs = document.getElementById('date-inputs');
-    dateBox.classList.toggle('expanded');
-    dateInputs.classList.toggle('hidden');
-    dateBoxText.classList.toggle('hidden');
+function toggleCalendar(event) {
+    event.stopPropagation();
+    document.getElementById("calendar-popup").classList.toggle("hidden");
+}
+
+function closeCalendar(event) {
+    event.stopPropagation();
+    document.getElementById("calendar-popup").classList.add("hidden");
+}
+
+function calculateCycle() {
+    const startDate = document.getElementById("start-date").value;
+    const endDate = document.getElementById("end-date").value;
+
+    if (startDate && endDate) {
+        const start = new Date(startDate);
+        const end = new Date(endDate);
+        const cycleLength = Math.round((end - start) / (1000 * 60 * 60 * 24));
+        
+        const nextPeriodStart = new Date(end);
+        nextPeriodStart.setDate(nextPeriodStart.getDate() + cycleLength);
+        displayPrediction(nextPeriodStart, cycleLength);
+    }
+}
+
+function displayPrediction(nextPeriodDate, cycleLength) {
+    let predictionBox = document.getElementById("prediction-box");
+
+    predictionBox.innerHTML = `
+        <strong>Predicted Next Period Start:</strong> ${nextPeriodDate.toDateString()}<br>
+        <strong>Cycle Length:</strong> ${cycleLength} days
+    `;
+    showDialog();
+}
+
+function showDialog() {
+    document.getElementById("prediction-dialog").classList.add("show");
+}
+
+function closeDialog() {
+    document.getElementById("prediction-dialog").classList.remove("show");
 }
